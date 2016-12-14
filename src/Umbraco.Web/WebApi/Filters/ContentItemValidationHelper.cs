@@ -116,7 +116,7 @@ namespace Umbraco.Web.WebApi.Filters
             foreach (var p in postedItem.ContentDto.Properties)
             {
                 var editor = p.PropertyEditor;
-                if (editor == null)
+                if (editor == null || !postedItem.Properties.Any(x => x.Alias == p.Alias))
                 {
                     var message = string.Format("The property editor with alias: {0} was not found for property with id {1}", p.DataType.PropertyEditorAlias, p.Id);
                     LogHelper.Warn<ContentItemValidationHelper<TPersisted, TModelSave>>(message);
