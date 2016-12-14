@@ -83,7 +83,7 @@ namespace Umbraco.Web
             {
                 if (_umbracoContext == null)
                 {
-                    throw new NullReferenceException("No " + typeof(UmbracoContext) + " reference has been set for this " + typeof(UmbracoHelper) + " instance");
+		    return null;
                 }
                 return _umbracoContext;
             }
@@ -237,15 +237,11 @@ namespace Umbraco.Web
         /// In some cases accessing this property will throw an exception if there is not IPublishedContent assigned to the Helper
         /// this will only ever happen if the Helper is constructed with an UmbracoContext and it is not a front-end request
         /// </remarks>
-        /// <exception cref="InvalidOperationException">Thrown if the UmbracoHelper is constructed with an UmbracoContext and it is not a front-end request</exception>
-	    public IPublishedContent AssignedContentItem
+            public IPublishedContent AssignedContentItem
 	    {
 	        get
 	        {
-	            if (_currentPage == null)
-                    throw new InvalidOperationException("Cannot return the " + typeof(IPublishedContent).Name + " because the " + typeof(UmbracoHelper).Name + " was constructed with an " + typeof(UmbracoContext).Name + " and the current request is not a front-end request.");
-
-                return _currentPage;
+                    return _currentPage;
 	        }
 	    }
 
